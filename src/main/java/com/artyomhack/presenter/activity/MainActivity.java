@@ -1,19 +1,22 @@
 package com.artyomhack.presenter.activity;
 
+import com.artyomhack.data.repository.UserRepositoryImpl;
 import com.artyomhack.domain.models.SaveUserNameParam;
-import com.artyomhack.domain.models.UserName;
+import com.artyomhack.domain.repository.UserRepository;
 import com.artyomhack.domain.usecases.GetUserNameUseCase;
 import com.artyomhack.domain.usecases.SaveUserNameUseCase;
 
 public class MainActivity {
 
-    private GetUserNameUseCase getUserNameUseCase;
-    private SaveUserNameUseCase saveUserNameUseCase;
+    private final UserRepository repository;
+    private final GetUserNameUseCase getUserNameUseCase;
+    private final SaveUserNameUseCase saveUserNameUseCase;
 
     public MainActivity(GetUserNameUseCase getUserNameUseCase,
-                        SaveUserNameUseCase saveUserNameUseCase) {
+                        SaveUserNameUseCase saveUserNameUseCase, UserRepositoryImpl repository) {
         this.getUserNameUseCase = getUserNameUseCase;
         this.saveUserNameUseCase = saveUserNameUseCase;
+        this.repository = repository;
     }
 
     public Boolean saveUserNameParam(SaveUserNameParam nameParam) {
